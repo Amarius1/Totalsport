@@ -1,0 +1,70 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link href="proteus.css" type="text/css" rel="stylesheet">
+</head>
+<script>
+    document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')
+</script>
+
+<body>
+
+    <section bar class="flat fixed">
+        <a btn icon class="large">menu</a>
+        <img src="brand.png" width="24px">
+        <p>TotalSport</p>
+        <span actions>
+            <a btn icon>help_outline</a>
+        </span>
+    </section>
+
+    
+         <a href="#" id="get-data">Get JSON data</a>
+    <div id="show-data"></div>
+
+    <!--<pre id="contents"></pre>-->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+    <script src="proteus.js"></script>
+    <script>
+        /*
+        function populatePre(url) {
+            var xhr = new XMLHttpRequest();
+            xhr.onload = function() {
+                document.getElementById('contents').textContent = this.responseText;
+            };
+            xhr.open('GET', url);
+            xhr.send();
+        }
+        populatePre('https://raw.githubusercontent.com/Amarius1/WavecomV/master/components/dummy.txt');
+    */
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('#get-data').click(function() {
+                var showData = $('#show-data');
+
+                $.getJSON('https://github.com/Amarius1/WavecomV/blob/master/components/dummy.json', function(data) {
+                    console.log(data);
+
+                    var items = data.items.map(function(item) {
+                        return item.key + ': ' + item.value;
+                    });
+
+                    showData.empty();
+
+                    if (items.length) {
+                        var content = '<li>' + items.join('</li><li>') + '</li>';
+                        var list = $('<ul />').html(content);
+                        showData.append(list);
+                    }
+                });
+
+                showData.text('Loading the JSON file.');
+            });
+        });
+    </script>
+</body>
+
+</html>
