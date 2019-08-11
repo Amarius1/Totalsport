@@ -45,7 +45,7 @@
             $('#get-data').click(function() {
                 var showData = $('#show-data');
 
-                $.getJSON('https://github.com/Amarius1/WavecomV/blob/master/components/dummy.json', function(data) {
+                $.getJSON('dummy.json', function(data) {
                     console.log(data);
 
                     var items = data.items.map(function(item) {
